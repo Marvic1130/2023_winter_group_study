@@ -36,14 +36,14 @@ void merge(int data[], int first, int mid, int last)
     delete[] temp;
 }
 
-void mergeSort(int data[], int first, int last)
+void mergeSort(int arr[], int first, int last)
 {
     if (first < last)
     {
         int mid = (first + last) / 2;
-        mergeSort(data, first, mid);
-        mergeSort(data, mid + 1, last);
-        merge(data, first, mid, last);
+        mergeSort(arr, first, mid);
+        mergeSort(arr, mid + 1, last);
+        merge(arr, first, mid, last);
     }
 }
 
