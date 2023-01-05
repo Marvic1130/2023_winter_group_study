@@ -1,0 +1,91 @@
+import java.security.SecureRandom;
+import java.util.Arrays;
+ 
+public class BogoSort {
+ 
+	static int[] sortedArr;	// 비교를 위한 사전 정렬된 배열 
+	static int[] arr;		// 정렬할 배열 
+	static int SIZE = 5;
+	static int RANGE = 100;
+ 
+	static SecureRandom random = new SecureRandom();
+	public static void main(String[] args) {
+ 
+ 
+		arr = new int[SIZE];
+		sortedArr = new int[SIZE];
+ 		
+		Bogosort();
+		System.out.println();
+
+	}
+ 
+	static void Bogosort() {		
+		int shuffle_count = 0;
+		for (int i = 0; i < SIZE; i++) {
+			int val = random.nextInt(RANGE);
+			arr[i] = val;
+			sortedArr[i] = val;
+		}
+ 
+		// 사전 정렬 배열 정렬 
+		Arrays.sort(sortedArr);
+		
+		// 정렬되지 않은 배열 출력 
+		System.out.println("[Not Sorted array]");
+		for(int i = 0; i < SIZE; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		
+		// 정렬 되어있는 배열 출력 
+		System.out.println("\n[Sorted array]");
+		for(int i = 0; i < SIZE; i++) {
+			System.out.print(sortedArr[i] + " ");
+		}
+		System.out.println();
+		
+		
+		// Time Check
+		long start = System.nanoTime();
+		// 정렬될 때까지 섞는다.
+		while (!isSorted()) {
+			shuffle();
+			shuffle_count++;
+		}
+		long end = System.nanoTime();
+ 
+		// 섞은 횟수와 걸린 시간(초) 출력 
+		System.out.println("Shuffle count : " + shuffle_count +  "\nTime : " + (end - start) * 1e-9 + "s");
+	}
+ 
+	
+	// Shuffle
+	static void shuffle() {
+		for (int i = 0; i < SIZE; i++) {
+			int index1 = random.nextInt(SIZE);
+			int index2 = random.nextInt(SIZE);	
+			
+			// 랜덤으로 지정 된 두 인덱스의 값을 서로 교환 
+			swap(index1, index2);
+		}
+	}
+ 
+	static void swap(int index1, int index2) {
+		int temp = arr[index1];
+		arr[index1] = arr[index2];
+		arr[index2] = temp;
+	}
+ 
+	
+	// 정렬된 상태인지 확인 
+	static boolean isSorted() {
+ 
+		for (int i = 0; i < SIZE; i++) {
+			if (arr[i] != sortedArr[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+ 
+}
