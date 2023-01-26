@@ -13,13 +13,13 @@
 5. 2,3,4번 과정 반복
 6. 더이상 2,3번 진행이 불가능하면, 현재 피벗과 교환
 7. 이제 교환된 피벗 기준으로 왼쪽엔 피벗보다 작은 값, 오른쪽엔 큰 값들만 존재한다.
+8. 작은 값 리스트와 큰 값리스트에 대해서 순차적으로 퀵정렬을 수행한다(재귀함수)
 """
 
 # 기본 Quick sort code // 다시 이해 해서 만들기
 
 # 리스트자료형의 변수 생성  
 Narr = [9,4,6,2,1,5,3,7,8]
-
 
 def Quick_sort(arr,left,right):
     if left >= right : return
@@ -48,3 +48,12 @@ def partition(arr,left,right):
 print(f"정렬 전 : {Narr}")
 Quick_sort(Narr,Narr[0],Narr[8])
 print(f"정렬 후 : {Narr}")
+
+# 파이썬 특징을 활용한 Quick sort 
+Narry = [9,4,6,2,1,5,3,7,8]
+
+
+# 장점
+
+# 단점
+
